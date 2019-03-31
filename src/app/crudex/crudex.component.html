@@ -1,0 +1,47 @@
+<table class="table table-striped">
+
+
+    <tr>
+        <th> INDEX</th>
+        <th> <a (click)="sor(1)"> ID</a></th>
+        <th> <a (click)="sor(2)"> TITLE</a></th>
+        <th> <a (click)="sor(3)"> YEAR</a></th>
+        <th> <a (click)="sor(4)"> AUTHOR</a></th>
+        <th>DELETE</th>
+        <th>UPDATE</th>
+      </tr>
+      
+  <tr *ngFor ="let book of books , let i = index">
+    <td>{{i+1}}</td>
+    <td>{{book.id}}</td>
+    <td>{{book.title}}</td>
+    <td>{{book.year}}</td>
+    <td>{{book.author}}</td>
+    <td><button class="btn btn-danger" (click)="delete(i)">DELETE</button></td>
+    <td><button class="btn btn-warning" (click)="update(i)" >UPDATE</button></td>
+  </tr>
+</table>
+
+
+<form #bookform = "ngForm" (ngSubmit)="add(bookform.value)">
+<input type="number" name="id" ngModel>
+<input  type="text"  name="title" ngModel>
+<input  type="number" name="year" ngModel>
+<input type="text" name="author" ngModel>
+<button class="btn btn-success">ADD</button>
+</form>
+
+<div *ngIf="isUpdated">
+<form #bookforms = "ngForm" (ngSubmit)="updateBook(bookforms.value)">
+   <input  type="number" name="id" ngModel="{{book.id}}">
+   <input type="text" name="title" ngModel="{{book.title}}">
+   <input type="number" name="year" ngModel="{{book.year}}">
+   <input type="text" name="author" ngModel="{{book.author}}">
+   <button class="btn btn-success">DONE</button>
+
+</form>
+</div>
+
+
+
+
